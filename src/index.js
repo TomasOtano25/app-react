@@ -2,17 +2,13 @@ import React from "react";
 import ReactDOM, { render } from "react-dom";
 
 class Button extends React.Component {
-  /*handleClick = () => {
-    this.props.onClickFunction;
-  };*/
+  handleClick = () => {
+    this.props.onClickFunction(this.props.incrementValue);
+  };
 
   render() {
     return (
-      <button
-        onClick={() => this.props.onClickFunction(this.props.incrementValue)}
-      >
-        +{this.props.incrementValue}
-      </button>
+      <button onClick={this.handleClick}>+{this.props.incrementValue}</button>
     );
   }
 }
@@ -34,7 +30,9 @@ class App extends React.Component {
     return (
       <div>
         <Button incrementValue={1} onClickFunction={this.incrementCounter} />
-        <Button incrementValue={2} onClickFunction={this.incrementCounter} />
+        <Button incrementValue={5} onClickFunction={this.incrementCounter} />
+        <Button incrementValue={10} onClickFunction={this.incrementCounter} />
+        <Button incrementValue={100} onClickFunction={this.incrementCounter} />
         <Result counter={this.state.counter} />
       </div>
     );
