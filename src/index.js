@@ -2,54 +2,36 @@ import React from "react";
 import ReactDOM, { render } from "react-dom";
 
 class Button extends React.Component {
-  /*constructor(props) {
-    super(props);
-    this.state = {
-      counter: 0
-    };
-  }*/
+  /*handleClick = () => {
+    this.props.onClickFunction;
+  };*/
+
+  render() {
+    return <button onClick={this.props.onClickFunction}>+1</button>;
+  }
+}
+
+const Result = props => {
+  return <div>{props.counter}</div>;
+};
+
+class App extends React.Component {
   state = { counter: 0 };
 
-  handleClick = () => {
-    // this === component instance
-    /*this.setState({
-      counter: this.state.counter + 1
-    });*/
-
-    // Si el segundo estado depende del estado actual
-
-    /*this.setState(prevState => {
-      return {
-        counter: prevState.counter + 1
-      };
-    });*/
-
-    // Modo corto
+  incrementCounter = () => {
     this.setState(prevState => ({
       counter: prevState.counter + 1
     }));
   };
 
   render() {
-    return <button onClick={this.handleClick}>{this.state.counter}</button>;
-  }
-}
-
-const Result = props => {
-  return <div>...</div>;
-};
-
-class App extends React.Component {
-  render() {
     return (
       <div>
-        <Button />
-        <Result />
+        <Button onClickFunction={this.incrementCounter} />
+        <Result counter={this.state.counter} />
       </div>
     );
   }
 }
-
-// render(<App />, document.getElementById("root"));
 
 ReactDOM.render(<App />, document.getElementById("root"));
