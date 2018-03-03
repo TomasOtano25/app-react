@@ -1,17 +1,55 @@
-import React from 'react';
-import { render } from 'react-dom';
-import Hello from './Hello';
+import React from "react";
+import ReactDOM, { render } from "react-dom";
 
-const styles = {
-  fontFamily: 'sans-serif',
-  textAlign: 'center',
+class Button extends React.Component {
+  /*constructor(props) {
+    super(props);
+    this.state = {
+      counter: 0
+    };
+  }*/
+  state = { counter: 0 };
+
+  handleClick = () => {
+    // this === component instance
+    /*this.setState({
+      counter: this.state.counter + 1
+    });*/
+
+    // Si el segundo estado depende del estado actual
+
+    /*this.setState(prevState => {
+      return {
+        counter: prevState.counter + 1
+      };
+    });*/
+
+    // Modo corto
+    this.setState(prevState => ({
+      counter: prevState.counter + 1
+    }));
+  };
+
+  render() {
+    return <button onClick={this.handleClick}>{this.state.counter}</button>;
+  }
+}
+
+const Result = props => {
+  return <div>...</div>;
 };
 
-const App = () => (
-  <div style={styles}>
-    <Hello name="CodeSandbox" />
-    <h2>Start editing to see some magic happen {'\u2728'}</h2>
-  </div>
-);
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Button />
+        <Result />
+      </div>
+    );
+  }
+}
 
-render(<App />, document.getElementById('root'));
+// render(<App />, document.getElementById("root"));
+
+ReactDOM.render(<App />, document.getElementById("root"));
